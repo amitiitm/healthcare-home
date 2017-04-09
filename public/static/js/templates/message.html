@@ -1,0 +1,9 @@
+<div class="alert alert-{{message.type}} alert-dismissable" ng-show="message.show">
+    <button type="button" class="close" aria-hidden="true" ng-click="closeAlert()">&times;</button>
+    <div>
+        <i class="icon fa fa-ban" ng-show="message.type=='error'"></i>
+        <i class="icon fa fa-warning" ng-show="message.type=='warning'"></i>
+        <i class="icon fa fa-check" ng-show="message.type=='success'"></i>
+        <span  ng-bind-html="message.message"></span>
+    </div>
+</div>

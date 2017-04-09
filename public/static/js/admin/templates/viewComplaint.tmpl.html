@@ -1,0 +1,35 @@
+<md-dialog aria-label="Vendor Edit" id="vendorInfoEdit">
+    <form name="basicDetails" method="post" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools col-md-10 col-sm-12 col-xs-12">
+                <h2>Complaint Details</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+
+                <div class="row">
+                    <div class="col-sm-2 col-xs-12">
+                        User Name
+                    </div>
+                    <div class="col-sm-10 col-xs-12">
+                        {{user_name}}
+                    </div>
+                </div>
+                <div class="md-toolbar-tools">
+
+                    <span flex></span>
+                    <div>
+                        <md-button ng-click="gotoTabNext(1)" class="md-raised md-primary">
+                            <span>Next</span>
+                        </md-button>
+                    </div>
+                </div>
+
+        </md-dialog-content>
+
+    </form>
+</md-dialog>

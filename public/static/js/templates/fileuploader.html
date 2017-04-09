@@ -1,0 +1,22 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<h3 class="modal-title" ng-bind="model.uplodertitle">{{model.uplodertitle}}</h3>
+	</div>
+	<div class="modal-body">
+		<div class="align-center">
+			<img ng-src="{{inputfile.resized.dataURL}}" />
+		</div>
+		<div class="align-center margin-auto">
+            <input id="inputImage"  type="file" name="inputImage " accept="image/*"
+                   image="inputfile" resize-max-height="300" class="margin-auto" resize-max-width="250"
+                   resize-quality="0.7" />
+		</div>
+
+        <uib-progressbar ng-show="updating" class="progress-striped active" value="dynamic" type="info">Updating...</uib-progressbar>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-info" ng-click="uploadfile()">Upload</button>
+		<button class="btn btn-default" ng-click="cancelButton()">Cancel</button>
+	</div>
+</div>

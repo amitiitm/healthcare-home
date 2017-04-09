@@ -1,0 +1,255 @@
+<md-dialog aria-label="New Lead" id="newLeadDialogModal">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add New Lead</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab >
+
+                    <md-tab-label>
+                        Basic info
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <md-icon md-svg-src="{{svgUrl}}/ic_person_24px.svg" class="name"> </md-icon>
+                                <input ng-model="user.name" type="text" placeholder="Name">
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <!-- Use floating placeholder instead of label -->
+                                <md-icon md-svg-src="{{svgUrl}}/ic_email_24px.svg" class="email"></md-icon>
+                                <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="{{svgUrl}}/ic_phone_24px.svg"></md-icon>
+                                <input ng-model="user.phone" type="text" placeholder="Phone Number">
+                            </md-input-container>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <md-select ng-model="ctrl.userState" placeholder="City">
+                                <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+                                <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">
+                                    {{state.abbrev}}
+                                </md-option>
+                            </md-select>
+
+                            <md-select ng-model="ctrl.userState" placeholder="References">
+                                <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+                                <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">
+                                    {{state.abbrev}}
+                                </md-option>
+                            </md-select>
+                        </div>
+                        </div>
+
+                    </md-tab-body>
+                </md-tab>
+                <md-tab>
+                    <md-tab-label>
+                        Customer Info
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <lable>Gender: </lable>
+                            <div class="clear-both"></div>
+                            <md-radio-group ng-model="data.group1" >
+                                <md-radio-button value="Male" class="md-primary pull-left">Male</md-radio-button>
+                                <md-radio-button class="pull-left" value="Female">Female</md-radio-button>
+                            </md-radio-group>
+                            <div class="clear-both"></div>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Name</label>
+                                <input ng-model="user.firstName">
+                            </md-input-container>
+
+                            <div layout>
+                                <div flex="10" layout layout-align="center center">
+                                    <span class="md-body-1">Age</span>
+                                </div>
+                                <md-slider flex md-discrete ng-model="rating" step="1" min="1" max="100" aria-label="rating">
+                                </md-slider>
+                            </div>
+
+                            <div layout>
+                                <div flex="10" layout layout-align="center center">
+                                    <span class="md-body-1">Weight (in Kgs)</span>
+                                </div>
+                                <md-slider flex md-discrete ng-model="rating2" step="1" min="1" max="150" aria-label="rating">
+                                </md-slider>
+                            </div>
+
+                        </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <md-input-container style="margin-right: 10px;">
+                                <label>Ailment:</label>
+                                <md-select ng-model="size">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                                Is patient is on equipment support (optional)
+                            </md-checkbox>
+
+                            <md-input-container style="margin-right: 10px;" ng-show="data.cb1">
+                                <label>Equipments Details</label>
+                                <md-select ng-model="size">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        </div>
+
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab>
+                    <md-tab-label>
+                        Shift Detail and Task Required
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Location</label>
+                                <input ng-model="user.firstName">
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>More than one shift:</label>
+                                <md-select ng-model="size">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                                <md-input-container>
+                                    <label>Select Services</label>
+                                    <md-select ng-model="selectedVegetables"
+                                               md-on-close="clearSearchTerm()"
+                                               data-md-container-class="selectdemoSelectHeader"
+                                               multiple>
+                                        <md-select-header class="demo-select-header">
+                                            <input ng-model="searchTerm"
+                                                   type="search"
+                                                   class="demo-header-searchbox md-text">
+                                        </md-select-header>
+                                        <md-optgroup label="vegetables">
+                                            <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+                                                filter:searchTerm">{{vegetable}}</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Other Task</label>
+                                <input ng-model="user.firstName">
+                            </md-input-container>
+                        </div>
+                        </div>
+
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab>
+                    <md-tab-label>
+                        Special Request
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                                Gender Preferences
+                            </md-switch>
+
+                            <md-input-container ng-show="data.cb1">
+                                <label>Gender Preferred:</label>
+                                <md-select ng-model="size">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-switch ng-model="data.cb2" aria-label="Switch 2">
+                                Religion Preferences
+                            </md-switch>
+
+                            <md-input-container ng-show="data.cb2">
+                                <label>Religion Preferred:</label>
+                                <md-select ng-model="size">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-switch ng-model="data.cb3" aria-label="Switch 3">
+                                Language Preferences
+                            </md-switch>
+
+                            <md-input-container ng-show="data.cb3">
+                                <label>Language Preferred:</label>
+                                <md-select ng-model="size">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-switch ng-model="data.cb4" aria-label="Switch 4">
+                                Age Preferences
+                            </md-switch>
+
+                            <md-input-container ng-show="data.cb4">
+                                <label>Age Preferred:</label>
+                                <md-select ng-model="size">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <lable>Vegetarian Person: </lable>
+                            <md-radio-group ng-model="data.group1" >
+                                <md-radio-button value="Yes" class="md-primary">Yes</md-radio-button>
+                                <md-radio-button value="No">No</md-radio-button>
+                            </md-radio-group>
+
+                            <div layout>
+                                <div flex="10" layout layout-align="center center">
+                                    <span class="md-body-1">Duration Of Service</span>
+                                </div>
+                                <md-slider flex md-discrete ng-model="rating1" step="1" min="1" max="100" aria-label="rating">
+                                </md-slider>
+                            </div>
+
+                            <lable>Start Date</lable>
+                            <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+
+                            <md-input-container class="md-block">
+                                <label>Remarks</label>
+                                <textarea ng-model="user.biography" md-maxlength="100" rows="5" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+                        </div>
+
+                    </md-tab-body>
+                </md-tab>
+
+            </md-tabs>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>

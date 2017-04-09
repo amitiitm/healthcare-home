@@ -1,0 +1,84 @@
+<md-dialog aria-label="New Employee" id="adminEmpView">
+    <form name="newEmp" method="post">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add New User</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+
+            <md-body>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <md-input-container class="md-icon-float md-block">
+                            <!-- Use floating label instead of placeholder -->
+                            <md-icon md-svg-src="{{svgUrl}}/ic_person_24px.svg" class="name"> </md-icon>
+                            <input required ng-model="addEmpData.name" type="text" placeholder="Name" name="name" minlength="3" maxlength="100">
+                            <div ng-show="newEmp.name.$invalid && newEmp.name.$touched" ng-messages="newEmp.name.$error && newEmp.name.$dirty" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                    Name must be between 3 and 100 characters long and look like a name
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <md-icon md-svg-src="{{svgUrl}}/ic_phone_24px.svg"></md-icon>
+                            <input required ng-model="addEmpData.phone" type="text" placeholder="Phone Number" name="phone" minlength="10" maxlength="11">
+                            <div ng-show="newEmp.phone.$invalid && newEmp.phone.$touched" ng-messages="newEmp.phone.$error && newEmp.phone.$dirty" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                    Phone number must be of 10 digits
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <!-- Use floating placeholder instead of label -->
+                            <md-icon md-svg-src="{{svgUrl}}/ic_email_24px.svg" class="email"></md-icon>
+                            <input required ng-model="addEmpData.email" type="email" placeholder="Email (required)" name="email">
+                            <div ng-show="newEmp.email.$invalid && newEmp.email.$touched" ng-messages="newEmp.email.$error && newEmp.email.$dirty" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                    This email id seems incorrect
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Address</label>
+                            <textarea required ng-model="addEmpData.biography" md-maxlength="150" rows="5" md-select-on-focus name="address"></textarea>
+                            <div ng-show="newEmp.address.$invalid && newEmp.address.$touched" ng-messages="newEmp.address.$error && newEmp.address.$dirty" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                    Address is a required field
+                                </div>
+                            </div>
+                            </md-input-container>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+
+                        <md-input-container class="md-block">
+                        <md-select placeholder="Department" ng-model="user" md-on-open="loadUsers()" name="department" style="min-width: 200px;">
+                            <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
+                        </md-select><div ng-show="newEmp.department.$invalid && newEmp.department.$touched" ng-messages="newEmp.department.$error && newEmp.department.$dirty" role="alert">
+                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                            Select the employee's department
+                        </div>
+                    </div>
+                        </md-input-container>
+
+                        <md-button class="md-raised md-primary pull-right">Add</md-button>
+                    </div>
+                </div>
+
+            </md-body>
+            </md-tab>
+
+
+            </md-tabs>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>

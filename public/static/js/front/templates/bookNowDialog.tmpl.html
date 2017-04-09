@@ -1,0 +1,60 @@
+<md-dialog aria-label="New Lead" id="bookServiceDialogModal">
+    <form name="bookRequest">
+        <md-dialog-content style="min-width: 600px; max-width:800px;max-height:810px; ">
+            <div class="ng-hides">
+                <h2>Request for service</h2>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Name</label>
+                        <input required type="text" name="name" ng-model="bookRequestData.name" minlength="3" maxlength="100">
+                        <div class="ng-hide" ng-show="bookRequest.name.$invalid && bookRequest.name.$dirty" ng-messages="bookRequest.name.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your email must be between 3 and 100 characters long and look like a name.
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Email</label>
+                        <input required type="email" name="email" ng-model="bookRequestData.email"
+                               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                        <div class="ng-hide" ng-show="bookRequest.email.$invalid && bookRequest.email.$dirty" ng-messages="bookRequest.email.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Phone</label>
+                        <input required type="text" name="phone" ng-model="bookRequestData.phone"
+                               minlength="10" maxlength="12"  />
+                        <div class="ng-hide" ng-show="bookRequest.phone.$invalid && bookRequest.phone.$dirty" ng-messages="bookRequest.phone.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your phone number must be between 10 and 100 characters long and look like an phone number.
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button ng-click="bookService($event)" class="btn btn-main btn-dialog-book" tabindex="0">
+                                <span><i class="fa fa-rocket"></i>Do it Myself</span>
+                                <p>I'll get started on my own</p>
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button href="#" ng-click="serviceEnquiry($event)" class="btn btn-main btn-dialog-book" tabindex="0">
+                                <span><i class="fa fa-phone"></i> Call me Now </span>
+                                <p>Let's do this over the phone</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="text-center">
+                    <i class=""></i>
+                </div>
+            </div>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>

@@ -1,0 +1,53 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateInvoicesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('order_id');
+            $table->integer('lead_id');
+            $table->decimal('price_per_day');
+            $table->decimal('total_amount');
+            $table->decimal('remaining_amount');
+            $table->integer('discount_type');
+            $table->decimal('discount_amount');
+            $table->decimal('tax_per');
+            $table->decimal('tax_amount');
+            $table->integer('payment_type_id');
+            $table->integer('payment_mode_id');
+            $table->integer('payment_period_id');
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->integer('locality_id');
+            $table->integer('city_id');
+            $table->integer('service_id');
+            $table->string('customer_name');
+            $table->integer('invoice_type');
+            $table->string('email');
+            $table->string('address');
+            $table->string('landmark');
+            $table->string('phone');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('invoices');
+    }
+}

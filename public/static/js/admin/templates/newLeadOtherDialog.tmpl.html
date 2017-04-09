@@ -1,0 +1,93 @@
+<md-dialog aria-label="New Lead" id="newLeadDialogModal">
+    <form name="otherDetails" method="post" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add New Other</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab >
+
+                    <md-tab-label>
+                        Basic info
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <md-icon md-svg-src="{{svgUrl}}/ic_person_24px.svg" class="name"> </md-icon>
+                                <input required ng-model="careFinderData.enquiry.name" type="text" placeholder="Name" name="name" minlength="3" maxlength="100">
+                                <div ng-show="otherDetails.$submitted && otherDetails.name.$error.required || otherDetails.name.$invalid && otherDetails.name.$touched" ng-messages="otherDetails.name.$error && otherDetails.name.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Name must be between 3 and 100 characters long and look like a name
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <!-- Use floating placeholder instead of label -->
+                                <md-icon md-svg-src="{{svgUrl}}/ic_email_24px.svg" class="email"></md-icon>
+                                <input required ng-model="careFinderData.enquiry.email" type="email" placeholder="Email (required)" name="email">
+                                <div ng-show="otherDetails.$submitted && otherDetails.email.$error.required || otherDetails.email.$invalid && otherDetails.email.$touched" ng-messages="otherDetails.email.$error && otherDetails.email.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        This email id seems incorrect
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="{{svgUrl}}/ic_phone_24px.svg"></md-icon>
+                                <input required ng-model="careFinderData.enquiry.phone" type="text" placeholder="Phone Number" name="phone" minlength="10" maxlength="11">
+                                <div ng-show="otherDetails.$submitted && otherDetails.phone.$error.required || otherDetails.phone.$invalid && otherDetails.phone.$touched" ng-messages="otherDetails.phone.$error && otherDetails.phone.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Phone number must be 10 digits long
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Locality</label>
+                                <input required ng-model="careFinderData.locality" name="locality">
+                                <div ng-show="otherDetails.$submitted && otherDetails.locality.$error.required || otherDetails.locality.$invalid && otherDetails.locality.$touched" ng-messages="otherDetails.locality.$error && otherDetails.locality.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Enter locality
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Address</label>
+                                <input required ng-model="careFinderData.address" name="address">
+                                <div ng-show="otherDetails.$submitted && otherDetails.address.$error.required || otherDetails.address.$invalid && otherDetails.address.$touched" ng-messages="otherDetails.address.$error && otherDetails.address.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Enter an address
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        </div>
+                        <div class="md-toolbar-tools">
+                            <span flex></span>
+                            <div>
+                                <md-button type="submit" ng-click="addlead($event)" class="md-raised md-primary">
+                                    <span>Submit</span>
+                                </md-button>
+                            </div>
+                        </div>
+
+                    </md-tab-body>
+                </md-tab>
+            </md-tabs>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>

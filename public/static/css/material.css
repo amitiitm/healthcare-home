@@ -1,0 +1,78 @@
+md-content.md-default-theme, md-content{
+    background-color: transparent;
+}
+
+md-backdrop.md-dialog-backdrop{
+    z-index: 100001;
+}
+.md-dialog-container{
+    z-index: 1000002;
+}
+.tipclr {
+    color: #383838;
+    font-size: 12px;
+    background-color: #e7e7e7;
+    border-radius: 5px;
+}
+.report-card {
+    font-size: 14px;
+    line-height: 35px;
+    padding: 10px 20px 10px 20px;
+    clear: both;
+}
+.report-btn {
+    color: #5e5e5e;
+    background-color: #ededed;
+}
+#newLeadDialogModal #dialogContent_newLeadDialogModal{
+    padding: 0px !important;
+
+}
+#newLeadDialogModal #dialogContent_newLeadDialogModal md-tab-content{
+    padding: 10px !important; min-width:800px; min-height:300px;
+    padding: 10px !important;
+    min-width: 800px;
+
+}
+#newLeadDialogModal #dialogContent_newLeadDialogModal md-tab-content h3{
+    margin: 0px;
+    font-size: 20px;
+    line-height: 1.2em;
+}
+#newLeadDialogModal .service-selector{
+    min-width: 150px;
+    padding: 10px;
+}
+
+.md-select-menu-container.md-table-select, .md-select-menu-container.md-pagination-select{
+    background: #ffffff;
+}
+md-table-pagination .label{
+    color: #000000;
+}
+.md-select-menu-container.md-active{
+    background: white;
+    z-index: 10000000;
+}
+.md-datepicker-calendar-pane.md-pane-open {
+    z-index: 10000000;
+}
+
+table.admin-data-table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2),
+table.admin-data-table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
+    padding: 0 5px 0 0;
+}
+}
+.btn-form-update {
+    color: #00a68e !important;
+    min-width:70px;
+    min-height: 25px;
+    font-size: 11px;
+    font-weight: 800;
+}
+#dialogContent_addUserDialog {
+    padding: 0px 20px;
+}
+#dialogContent_addUserDialog md-radio-button.user-type-option{
+    float: left;
+}

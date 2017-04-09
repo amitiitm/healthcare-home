@@ -1,0 +1,319 @@
+<md-dialog aria-label="New physio Lead" id="newLeadDialogModal">
+    <form name="physioDetails" method="post" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="lead_h2">Add New physiotherapy lead</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width: 1000px;;max-height:810px; ">
+            <div md-dynamic-height md-border-bottom md-selected="selectedTab" style="padding-left: 20px">
+                    <div-body>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                            <h2 class="lead_h2">
+                                Basic info
+                            </h2>
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <md-icon md-svg-src="{{svgUrl}}/ic_person_24px.svg" class="name"> </md-icon>
+                                <input required ng-model="careFinderData.enquiry.name" type="text" placeholder="Name" name="name">
+                                <div ng-show="physioDetails.$submitted && physioDetails.name.$error.required || physioDetails.name.$invalid &&physioDetails.name.$touched" ng-messages="physioDetails.name.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        The name must be between 3 and 100 characters long and look like a name
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <!-- Use floating placeholder instead of label -->
+                                <md-icon md-svg-src="{{svgUrl}}/ic_email_24px.svg" class="email"></md-icon>
+                                <input required ng-model="careFinderData.enquiry.email" type="email" placeholder="Email" name="email">
+                                <div ng-show="physioDetails.$submitted && physioDetails.email.$error.required || physioDetails.email.$invalid &&physioDetails.email.$touched" ng-messages="physioDetails.email.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        This email id seems incorrect
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="{{svgUrl}}/ic_phone_24px.svg"></md-icon>
+                                <input required ng-model="careFinderData.enquiry.phone" type="text" placeholder="Phone Number" name="phone">
+                                <div ng-show="physioDetails.$submitted && physioDetails.phone.$error.required || physioDetails.phone.$invalid &&physioDetails.phone.$touched" ng-messages="physioDetails.phone.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Phone number must be of 10 digits
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Location</label>
+                                <input required ng-model="careFinderData.location" name="location">
+                                <div ng-show="physioDetails.$submitted && physioDetails.location.$error.required || physioDetails.location.$invalid &&physioDetails.location.$touched" ng-messages="physioDetails.location.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Enter the location of the patient
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <label>Address</label>
+                                <textarea ng-model="careFinderData.address" md-maxlength="100" rows="5" name="address"></textarea>
+                                <div ng-show="physioDetails.$submitted && physioDetails.address.$error.required || physioDetails.address.$invalid &&physioDetails.address.$touched" ng-messages="physioDetails.address.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Enter the patient's address
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <md-select required ng-model="careFinderData.enquiry.references" placeholder="References" name="references">
+                                    <md-option ng-repeat="reference in references" value="{{reference.id}}">
+                                        {{reference.label}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div-body>
+
+                    <div-body>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <h2 class="lead_h2">
+                                Patient Info
+                            </h2>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <div>Gender: </div>
+                                <div class="clear-both"></div>
+                                <md-radio-group required ng-model="careFinderData.patientInfo.gender" name="gender">
+                                    <md-radio-button value="M" class="md-primary pull-left">Male</md-radio-button>
+                                    <md-radio-button class="pull-left" value="F">Female</md-radio-button>
+                                </md-radio-group>
+                                <div ng-show="physioDetails.$submitted && physioDetails.gender.$error.required || physioDetails.gender.$invalid && physioDetails.gender.$touched" ng-messages="physioDetails.gender.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Select patient's gender.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <div class="clear-both"></div>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Name</label>
+                                <input required ng-model="careFinderData.patientInfo.name" name="pname">
+                                <div ng-show="physioDetails.$submitted && physioDetails.pname.$error.required || physioDetails.pname.$invalid &&physioDetails.pname.$touched" ng-messages="physioDetails.pname.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Enter patient's name
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <div layout>
+                                    <div flex="10" layout layout-align="center center">
+                                        <span class="md-body-1">Age</span>
+                                    </div>
+                                    <md-slider required flex md-discrete ng-model="careFinderData.patientInfo.age" step="1" min="1" max="100" aria-label="rating" name="age">
+                                    </md-slider>
+                                </div>
+                                <div ng-show="physioDetails.$submitted && physioDetails.age.$error.required || physioDetails.age.$invalid &&physioDetails.age.$touched" ng-messages="physioDetails.age.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Select patient's age
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <div layout>
+                                <div flex="10" layout layout-align="center center">
+                                    <span class="md-body-1">Weight (in Kgs)</span>
+                                </div>
+                                <md-slider required flex md-discrete ng-model="careFinderData.patientInfo.weight" step="1" min="1" max="150" aria-label="rating" name="weight">
+                                </md-slider>
+                            </div>
+                            <div ng-show="physioDetails.$submitted && physioDetails.weight.$error.required || physioDetails.weight.$invalid &&physioDetails.weight.$touched" ng-messages="physioDetails.weight.$error" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                    Select patient's weight
+                                </div>
+                            </div>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-select required ng-model="conditionLevelOne" placeholder="Condition" name="condition">
+                                            <md-option ng-repeat="condition in getConditionFilteredByParentId(0) " value="{{condition.id}}">
+                                                {{condition.name}}
+                                            </md-option>
+                                        </md-select>
+                                     </md-input-container>
+                                    <md-input-container ng-show="conditionLevelOne && getConditionFilteredByParentId(conditionLevelOne).length>0">
+                                        <md-select required ng-model="conditionLevelTwo" placeholder="Sub-Condition(s)" name="condition2">
+                                            <md-option ng-repeat="condition in getConditionFilteredByParentId(conditionLevelOne) " value="{{condition.id}}">
+                                                {{condition.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                    <md-input-container ng-show="conditionLevelTwo && getConditionFilteredByParentId(conditionLevelTwo).length>0">
+                                        <md-select required ng-model="conditionLevelThree" placeholder="Sub-Condition(s)" name="condition">
+                                            <md-option ng-repeat="condition in getConditionFilteredByParentId(conditionLevelTwo) " value="{{condition.id}}">
+                                                {{condition.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                <md-input-container ng-show="conditionLevelThree && getConditionFilteredByParentId(conditionLevelThree).length>0">
+                                    <md-select required ng-model="conditionLevelFour" placeholder="Sub-Condition(s)" name="condition">
+                                        <md-option ng-repeat="condition in getConditionFilteredByParentId(conditionLevelThree) " value="{{condition.id}}">
+                                            {{condition.name}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                    <md-input-container>
+                                        <div ng-show="physioDetails.$submitted && physioDetails.condition.$error.required || physioDetails.condition.$invalid &&physioDetails.condition.$touched" ng-messages="physioDetails.condition.$error" role="alert">
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Select the appropriate condition of the patient
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                <md-input-container>
+                                    <md-select required ng-model="complaintLevelOne" placeholder="Chief Complaint" name="complaint">
+                                        <md-option ng-repeat="complaint in getComplaintFilteredByParentId(0) " value="{{complaint.id}}">
+                                            {{complaint.details}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container ng-show="complaintLevelOne && getComplaintFilteredByParentId(complaintLevelOne).length>0">
+                                    <md-select required ng-model="complaintLevelTwo" placeholder="Sub-Complaint(s)" name="complaint">
+                                        <md-option ng-repeat="complaint in getComplaintFilteredByParentId(complaintLevelOne) " value="{{complaint.id}}">
+                                            {{complaint.details}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container ng-show="complaintLevelTWo && getComplaintFilteredByParentId(complaintLevelTwo).length>0">
+                                    <md-select required ng-model="complaintLevelThree" placeholder="Sub-Complaint(s)" name="complaint">
+                                        <md-option ng-repeat="complaint in getComplaintFilteredByParentId(complaintLevelTwo) " value="{{complaint.id}}">
+                                            {{complaint.details}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                        <div ng-show="physioDetails.complaint.$invalid &&physioDetails.complaint.$touched" ng-messages="physioDetails.complaint.$error" role="alert">
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Select the Chief Complaint
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-select required ng-model="careFinderData.physioInfo.present_condition" placeholder="Present Condition" name="present_condition">
+                                            <md-option ng-repeat="ptcondition in ptconditions" value="{{ptcondition.id}}">
+                                                {{ptcondition.details}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-show="physioDetails.present_condition.$invalid &&physioDetails.present_condition.$touched" ng-messages="physioDetails.present_condition.$error" role="alert">
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Select the present condition of the patient.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-select required ng-model="careFinderData.physioInfo.modalities" placeholder="Modalities" name="modalities">
+                                            <md-option ng-repeat="modalities in modalities" value="{{modalities.id}}">
+                                                {{modalities.label}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-show="physioDetails.$submitted && physioDetails.modalities.$error.required || physioDetails.modalities.$invalid &&physioDetails.modalities.$touched" ng-messages="physioDetails.modalities.$error" role="alert">
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Select modalities
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                        </div>
+
+
+                    </div-body>
+
+                    <div-body>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <h2 class="lead_h2">
+                                Special Request
+                            </h2>
+                            <label>Start Date</label>
+                            <md-datepicker required ng-model="careFinderData.request.start_date" md-placeholder="Enter date" name="start_date"></md-datepicker>
+                            <md-input-container class="md-block">
+                            <div ng-show="physioDetails.$submitted && physioDetails.start_date.$error.required || physioDetails.start_date.$invalid &&physioDetails.start_date.$touched" ng-messages="physioDetails.start_date.$error" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                    Select the start date of session(s)
+                                </div>
+                            </div>
+                                </md-input-container>
+
+                                <label>Closing Date</label>
+                                <md-datepicker required ng-model="careFinderData.physioInfo.expected_closing_date" md-placeholder="Enter date" name="closing_date"></md-datepicker>
+                                <md-input-container class="md-block">
+                                    <div ng-show="physioDetails.$submitted && physioDetails.closing_date.$error.required || careFinderData.$submitted ||physioDetails.closing_date.$invalid &&physioDetails.closing_date.$touched" ng-messages="physioDetails.closing_date.$error" role="alert">
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                            Select the closing date of session(s)
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                            <md-input-container style="margin-right: 10px;">
+                                <label>No. of Session Expected</label>
+                                <md-select required ng-model="careFinderData.physioInfo.no_of_sessions" name="sessions">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                                <div ng-show="physioDetails.$submitted && physioDetails.sessions.$error.required || physioDetails.sessions.$invalid &&physioDetails.sessions.$touched" ng-messages="physioDetails.sessions.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Select the number of session(s) expected
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container style="margin-right: 10px;">
+                                <label>Pricing</label>
+                                <md-select required ng-model="careFinderData.physioInfo.pricing" name="pricing">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                                <div ng-show="physioDetails.$submitted && physioDetails.pricing.$error.required || physioDetails.pricing.$invalid &&physioDetails.pricing.$touched" ng-messages="physioDetails.pricing.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        The name must be between 3 and 100 characters long and look like a name
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <div>Mode of Payment: </div>
+                                    <div class="clear-both"></div>
+                                    <md-radio-group ng-model="careFinderData.MOP" name="MOP" required name="MOP">
+                                        <md-radio-button value="1" class="md-primary pull-left">Cash</md-radio-button>
+                                        <md-radio-button value="2" class="pull-left">Cheque</md-radio-button>
+                                        <md-radio-button value="3" class="pull-left">Online</md-radio-button>
+                                    </md-radio-group>
+                                    <div ng-show="physioDetails.$submitted && physioDetails.MOP.$error.required || physioDetails.MOP.$invalid &&physioDetails.MOP.$touched" ng-messages="physioDetails.MOP.$error" role="alert">
+                                        <div ng-message-exp="['required','pattern']">
+                                            Select the mode of payment
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <div class="clear-both"></div>
+
+                            <md-input-container class="md-block">
+                                <label>Remark</label>
+                                <textarea ng-model="careFinderData.remark" md-maxlength="100" rows="5" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+                            <div class="md-toolbar-tools">
+                                <span flex></span>
+                                <div>
+                                    <md-button type="submit" ng-click="addlead($event)" class="md-raised md-primary">
+                                        <span>Submit</span>
+                                    </md-button>
+                                </div>
+                    </div-body>
+                </div>
+            </div>
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

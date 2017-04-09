@@ -1,0 +1,368 @@
+<md-dialog aria-label="New Lead" id="newLeadDialogModal">
+    <form name="basicDetails" method="post" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools col-md-10 col-sm-12 col-xs-12">
+                <h2>Add New Lead</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+            <md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab">
+                <md-tab >
+
+                    <md-tab-label>
+                        Customer info
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <md-icon md-svg-src="{{svgUrl}}/ic_person_24px.svg" class="name"> </md-icon>
+                                <input required ng-model="careFinderData.enquiry.name" type="text" placeholder="Name" name="name" minlength="3" maxlength="100">
+                                <div ng-show="basicDetails.$submitted && basicDetails.name.$error.required || basicDetails.name.$invalid && basicDetails.name.$touched" ng-messages="basicDetails.name.$error && basicDetails.name.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        The name must be between 3 and 100 characters long and look like a name
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <!-- Use floating placeholder instead of label -->
+                                <md-icon md-svg-src="{{svgUrl}}/ic_email_24px.svg" class="email"></md-icon>
+                                <input required ng-model="careFinderData.enquiry.email" type="email" placeholder="Email (required)" name="email">
+                                <div ng-show="basicDetails.$submitted && basicDetails.email.$error.required || basicDetails.email.$invalid && basicDetails.email.$touched" ng-messages="basicDetails.email.$error && basicDetails.email.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        This email id seems incorrect
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="{{svgUrl}}/ic_phone_24px.svg"></md-icon>
+                                <input required ng-model="careFinderData.enquiry.phone" type="text" placeholder="Phone Number" name="phone" minlength="10" maxlength="11">
+                                <div ng-show="basicDetails.$submitted && basicDetails.phone.$error.required || basicDetails.phone.$invalid && basicDetails.phone.$touched" ng-messages="basicDetails.phone.$error && basicDetails.phone.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Phone number must be 10 digits long
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                            <md-select ng-model="careFinderData.request.locality" placeholder="locality" name="locality">
+                                <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+                                <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">
+                                    {{state.abbrev}}
+                                </md-option>
+                            </md-select>
+                                <div ng-show="basicDetails.$submitted && basicDetails.locality.$error.required || basicDetails.locality.$touched && basicDetails.locality.$invalid" ng-messages="basicDetails.locality.$error && basicDetails.locality.$touched" role="alert">
+                                    <div ng-message-exp="['required']">
+                                        You must select a locality
+                                    </div>
+                                </div>
+                                </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <md-select ng-model="careFinderData.enquiry.references" placeholder="References" name="references">
+                                    <md-option ng-repeat="reference in references" value="{{reference.id}}">
+                                        {{reference.label}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        </div>
+                        <div class="md-toolbar-tools">
+
+                            <span flex></span>
+                            <div>
+                                <md-button ng-click="gotoTabNext(1)" class="md-raised md-primary">
+                                    <span>Next</span>
+                                </md-button>
+                            </div>
+                        </div>
+
+                    </md-tab-body>
+                </md-tab>
+                <md-tab>
+                    <md-tab-label>
+                        Patient Info
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                            <div>Gender: </div>
+                            <div class="clear-both"></div>
+                            <md-radio-group ng-model="careFinderData.patientInfo.gender" name="gender" required>
+                                <md-radio-button value="M" class="md-primary pull-left">Male</md-radio-button>
+                                <md-radio-button class="pull-left" value="F">Female</md-radio-button>
+                            </md-radio-group>
+                                <div ng-show="basicDetails.$submitted && basicDetails.gender.$error.required ||basicDetails.$submitted" ng-messages="basicDetails.gender.$error && basicDetails.gender.$dirty" role="alert">
+                                    <div ng-message-exp="['required']">
+                                        Select the gender
+                                    </div>
+                                </div>
+                                </md-input-container>
+                            <div class="clear-both"></div>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required ng-model="careFinderData.patientInfo.name" type="text" placeholder="Name" name="cname" minlength="3" maxlength="100">
+                                <div ng-show="basicDetails.$submitted && basicDetails.cname.$error.required || basicDetails.cname.$invalid && basicDetails.cname.$touched" ng-messages="basicDetails.cname.$error && basicDetails.cname.$dirty" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        The name must be between 3 and 100 characters long and look like a name
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <div layout>
+                                <div flex="10" layout layout-align="center center">
+                                    <span class="md-body-1">Age</span>
+                                </div>
+                                <md-slider flex md-discrete ng-model="careFinderData.patientInfo.age" step="1" min="1" max="100" aria-label="rating" name="age" required>
+                                </md-slider>
+                            </div>
+                                <div ng-show="basicDetails.age.$error.required || basicDetails.age.$invalid && basicDetails.age.$touched" ng-messages="basicDetails.age.$error && basicDetails.age.$dirty" role="alert">
+                                    <div ng-message-exp="['required']">
+                                        You must select the age
+                                    </div>
+                                </div>
+                                </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <div layout>
+                                <div flex="10" layout layout-align="center center">
+                                    <span class="md-body-1">Weight (in Kgs)</span>
+                                </div>
+                                <md-slider required flex md-discrete ng-model="careFinderData.patientInfo.weight" step="1" min="1" max="150" aria-label="rating">
+                                </md-slider>
+                                </div>
+                            </md-input-container>
+
+                        </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <md-input-container style="margin-right: 10px;">
+                                <label>Ailment:</label>
+                                <md-select required ng-model="careFinderData.patientInfo.ailment" name="ailment" multiple>
+                                    <md-option ng-repeat="ailment in ailments" value="{{ailment.id}}">
+                                        {{ailment.name}}
+                                    </md-option>
+                                </md-select>
+                                <div ng-show="basicDetails.$submitted && basicDetails.ailment.$error.required || basicDetails.ailment.$invalid && basicDetails.ailment.$touched" ng-messages="basicDetails.ailment.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        You must select an ailment
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <md-checkbox ng-model="careFinderData.patientInfo.equipmentSupport" aria-label="Checkbox 1">
+                                        Is patient is on equipment support (optional)
+                                    </md-checkbox>
+                                </md-input-container>
+
+                            <md-input-container style="margin-right: 10px;" ng-show="careFinderData.patientInfo.equipmentSupport">
+                                <label>Equipments Details</label>
+                                <md-select ng-model="careFinderData.patientInfo.equipments">
+                                    <md-option ng-repeat="equipment in equipments" value="{{equipment.id}}">
+                                        {{equipment.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                            <div class="md-toolbar-tools">
+                                <div>
+                                    <md-button ng-click="gotoTabPrev(0)" class="md-raised">
+                                        <span>Previous</span>
+                                    </md-button>
+                                </div>
+                                <span flex></span>
+                                <div>
+                                    <md-button ng-click="gotoTabNext(2)" class="md-raised md-primary">
+                                        <span>Next</span>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab>
+                    <md-tab-label>
+                        Shift Detail and Task Required
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Location</label>
+                                <input ng-model="careFinderData.location">
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>More than one shift:</label>
+                                <md-select required ng-model="careFinderData.shift" name="shift">
+                                    <md-option ng-repeat="shift in shifts" value="{{shift.id}}">
+                                        {{shift.label}}
+                                    </md-option>
+                                </md-select>
+                                <div ng-show="basicDetails.$submitted && basicDetails.shift.$error.required || basicDetails.shift.$invalid && basicDetails.shift.$touched" ng-messages="basicDetails.shift.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        You must select a preferred shift
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Other Task</label>
+                                <input ng-model="careFinderData.task">
+                            </md-input-container>
+                        </div>
+                            <div class="md-toolbar-tools">
+                                <div>
+                                    <md-button ng-click="gotoTabPrev(1)" class="md-raised">
+                                        <span>Previous</span>
+                                    </md-button>
+                                </div>
+                                <span flex></span>
+                                <div>
+                                    <md-button ng-click="gotoTabNext(3)" class="md-raised md-primary">
+                                        <span>Next</span>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab>
+                    <md-tab-label>
+                        Special Request
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <md-switch ng-model="careFinderData.request.gender" aria-label="Switch 1">
+                                Gender Preferences
+                            </md-switch>
+                                </md-input-container>
+
+                            <md-input-container ng-show="careFinderData.request.gender">
+                                <md-radio-group ng-model="careFinderData.request.genderRequired" >
+                                    <md-radio-button value="M" class="md-primary pull-left">Male</md-radio-button>
+                                    <md-radio-button class="pull-left" value="F">Female</md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <md-switch ng-model="careFinderData.request.religion" aria-label="Switch 2">
+                                Religion Preferences
+                            </md-switch>
+                                </md-input-container>
+
+                            <md-input-container ng-show="careFinderData.request.religion">
+                                <label>Religion Preferred:</label>
+                                <md-select ng-model="careFinderData.request.religionRequired">
+                                    <md-option ng-repeat="religion in religions" value="{{religion.id}}">{{religion.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <md-switch ng-model="careFinderData.request.language" aria-label="Switch 3">
+                                Language Preferences
+                            </md-switch>
+                                </md-input-container>
+
+                            <md-input-container ng-show="careFinderData.request.language">
+                                <label>Language Preferred:</label>
+                                <md-select ng-model="careFinderData.request.languageRequired">
+                                    <md-option ng-repeat="language in languages" value="{{language.id}}">{{language.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <md-switch ng-model="careFinderData.request.age" aria-label="Switch 4">
+                                Age Preferences
+                            </md-switch>
+                                </md-input-container>
+
+                            <md-input-container ng-show="careFinderData.request.age">
+                                    Age: <md-slider flex md-discrete ng-model="careFinderData.request.ageRequired" step="1" min="1" max="100" aria-label="age" infocus></md-slider>
+                            </md-input-container>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <md-input-container class="md-block" flex-gt-sm>
+                            <div>Vegetarian Person: </div>
+                            <md-radio-group ng-model="careFinderData.request.foodRequired" >
+                                <md-radio-button value="Yes" class="md-primary pull-left">Yes</md-radio-button>
+                                <md-radio-button value="No" class="pull-left">No</md-radio-button>
+                            </md-radio-group>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <div layout>
+                                <div flex="10" layout layout-align="center center">
+                                    <span class="md-body-1">Duration Of Service (in days)</span>
+                                </div>
+                                <md-slider flex md-discrete required ng-model="careFinderData.request.duration" step="1" min="1" max="100" aria-label="rating" name="duration">
+                                </md-slider>
+                                </div>
+                                <div ng-show="basicDetails.$submitted || basicDetails.duration.$invalid && basicDetails.duration.$touched" ng-messages="basicDetails.duration.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Select the duration of service
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                                <label>Start Date</label>
+                            <md-datepicker required ng-model="careFinderData.request.startDate" md-placeholder="Enter date" name="date"></md-datepicker>
+                            <md-input-container class="md-block" flex-gt-sm>
+                            <div ng-show="basicDetails.$submitted || basicDetails.date.$invalid && basicDetails.date.$touched" ng-messages="basicDetails.date.$error" role="alert">
+                                <div ng-message-exp="['required', 'pattern']">
+                                    Select a Start date
+                                </div>
+                            </div>
+                            </md-input-container>
+
+                            <md-input-container required class="md-block" flex-gt-sm>
+                                <label>Remarks</label>
+                                <textarea ng-model="careFinderData.request.remark" name="remark" md-maxlength="100" rows="5" md-select-on-focus></textarea>
+                            </md-input-container>
+
+                        </div>
+                            <div class="md-toolbar-tools">
+                                <div>
+                                    <md-button ng-click="gotoTabPrev(2)" class="md-raised">
+                                        <span>Previous</span>
+                                    </md-button>
+                                </div>
+                                <span flex></span>
+                                <div>
+                                    <md-button type="submit" ng-click="addlead($event)" class="md-raised md-primary">
+                                        <span>Submit</span>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+
+            </md-tabs>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>

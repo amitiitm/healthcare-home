@@ -1,0 +1,4 @@
+{
+    "job": "Illuminate\\Queue\\CallQueuedHandler@call",
+    "data": {
+        "command": "O:40:\"App\\Jobs\\SendSMSToCustomerOnLeadCreation\":5:{s:7:\"\u0000*\u0000lead\";O:45:\"Illuminate\\Contracts\\Database\\ModelIdentifier\":2:{s:5:\"class\";s:19:\"App\\Models\\ORM\\Lead\";s:2:\"id\";s:4:\"1112\";}s:25:\"\u0000*\u0000operationDomainService\";O:42:\"App\\Services\\Domain\\OperationDomainService\":0:{}s:5:\"queue\";N;s:5:\"delay\";N;s:6:\"\u0000*\u0000job\";N;}"}}

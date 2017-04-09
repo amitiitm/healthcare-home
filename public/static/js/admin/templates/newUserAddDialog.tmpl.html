@@ -1,0 +1,80 @@
+<md-dialog aria-label="New User" id="addUserDialog">
+    <form name="addUser" method="post">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add New User</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="alert alert-danger fresh-color margin-top-5" role="alert" ng-show="message.show">
+                <span ng-bind="message.message"></span>
+            </div>
+            <div class="row" style="min-width: 400px;">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <md-radio-group ng-model="user.type">
+                        <md-radio-button class="user-type-option" value="1" class="md-primary"> Employee </md-radio-button>
+                        <md-radio-button class="user-type-option" value="2"> Care Giver </md-radio-button>
+                        <md-radio-button class="user-type-option" value="3"> Customer </md-radio-button>
+                    </md-radio-group>
+                    <div class="clearfix"></div>
+                    <md-input-container>
+                        <!-- Use floating label instead of placeholder -->
+                        <label>Name</label>
+                        <input required ng-model="user.name" type="text" placeholder="Name" name="name" minlength="1" maxlength="100">
+                        <div ng-show="addUser.name.$invalid && addUser.name.$touched" ng-messages="addUser.name.$error && addUser.name.$dirty" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Name must be between 3 and 100 characters long and look like a name
+                            </div>
+                        </div>
+
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Phone No.</label>
+                        <input ng-model="user.phone" type="text" placeholder="Phone Number" name="phone">
+                        <div ng-show="addUser.phone.$invalid && addUser.phone.$touched" ng-messages="addUser.phone.$error && addUser.phone.$dirty" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Phone number must be of 10 digits
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Email</label>
+
+                        <input required type="email" name="email" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                        <div ng-show="addUser.email.$invalid && addUser.email.$touched" ng-messages="addUser.email.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Email must be between 10 and 100 characters long and look like an e-mail address.
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Password</label>
+                        <input required ng-model="user.password" minlength="6" maxlength="50" type="password" md-select-on-focus name="password">
+                        <div ng-show="addUser.password.$invalid && addUser.password.$touched" ng-messages="addUser.password.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength'']">
+                                Password must be between 6 and 50 characters long which is hard to guess but easy to remember.
+                            </div>
+                        </div>
+
+                    </md-input-container>
+
+
+                    <div class="text-right">
+                        <md-button class="md-raised md-primary pull-right" ng-disabled="addUser.$invalid" ng-click="submitAddUser()">Add User</md-button>
+                    </div>
+
+                </div>
+            </div>
+        </md-dialog-content>
+        <!--<md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary pull-right">Add</md-button>
+        </md-dialog-actions>-->
+    </form>
+</md-dialog>
